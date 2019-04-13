@@ -1,6 +1,7 @@
 <?php
 
-namespace TAS\CoreApi;
+namespace Phy\CoreApi;
+use DB;
 
 class CallService {
 
@@ -17,7 +18,7 @@ class CallService {
             $object = $classService::getInstance();
 
             // begin transaction
-            if($object->transaction !== null && $this->transaction !== false)
+            if($object->transaction !== null && $object->transaction !== false)
                 DB::beginTransaction();
 
             // validation service not allow
@@ -33,14 +34,14 @@ class CallService {
             
             $result = $object->execute($input);
 
-            if($object->transaction !== null && $this->transaction !== false)
+            if($object->transaction !== null && $object->transaction !== false)
                 DB::commit();
 
             return CoreResponse::ok($result);
 
         } catch (CoreException $ex){
             // transaction rollback
-            if($object->transaction !== null && $this->transaction !== false)
+            if($object->transaction !== null && $object->transaction !== false)
                 DB::rollback();
             
             return CoreResponse::fail($ex);
