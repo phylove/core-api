@@ -1,6 +1,7 @@
 <?php
 
 namespace Phy\CoreApi;
+use Phy\CoreApi\CoreException;
 use DB;
 
 class CallService {
@@ -9,17 +10,16 @@ class CallService {
     {
         try {
             $classService = "App\\Service\\".ucfirst($serviceName);
+            $object = $classService::getInstance();
+            
+            // begin transaction
+            if($object->transaction !== null && $object->transaction !== false)
+                DB::beginTransaction();
             
             // validation service exists
             if(!class_exists($classService)){
                 throw New CoreException("Service doesn't exists");
             }
-
-            $object = $classService::getInstance();
-
-            // begin transaction
-            if($object->transaction !== null && $object->transaction !== false)
-                DB::beginTransaction();
 
             // validation service not allow
             if(isset($object->system)){

@@ -26,14 +26,14 @@ abstract class CoreService implements DefaultService {
     }
 
 	public function execute($input){
-		$originalData = $input;
+		$originalInput = $input;
 		$result = [];
 
 		if(isset($this->task)){
-			if(!in_array($this->task, $input['session']->tasks))
+			if(!in_array($this->task, app()->make('sessions')->getSessionAll()->tasks))
 				throw New CoreException("Unauthorized");
 		}
-		
+
 		try {
 			
 			$validator = Validator::make($input, $this->validation());
@@ -43,7 +43,7 @@ abstract class CoreService implements DefaultService {
 			}
 
 			$this->prepare($input);
-			$result =  $this->process($input, $originalData);
+			$result =  $this->process($input, $originalInput);
 
 		} catch(CoreException $ex){		
 

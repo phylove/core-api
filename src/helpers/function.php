@@ -13,8 +13,7 @@ if(!function_exists('service')){
     {
         $classService = "App\\Service\\".ucfirst($service);
         if(!class_exists($classService)){
-            throw New \TAS\CoreApi\CoreException("Service doesn't exists");
-            return null;
+            throw New \Phy\CoreApi\CoreException("Service ".$service." doesn't exists");
         }
 
         return $classService::getInstance();
@@ -33,7 +32,6 @@ if(!function_exists('service_exec')){
     function service_exec($service, $input)
     {
         $object = service($service);
-        $object->transaction = false;
         return $object->execute($input);
     }
 }
