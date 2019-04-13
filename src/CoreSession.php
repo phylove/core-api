@@ -1,0 +1,21 @@
+<?php
+
+namespace Phy\CoreApi;
+
+class CoreSession {
+
+    public $sessions;
+
+	public function setSession($sessions){
+        $this->sessions = $sessions;
+    }
+    
+    public function getSession($key){
+        return $this->sessions->{$key};
+    }
+    
+    public function getSessionAll(){
+        return $this->sessions;
+	}
+
+}
