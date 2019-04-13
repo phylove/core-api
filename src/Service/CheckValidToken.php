@@ -5,7 +5,7 @@ namespace Phy\CoreApi\Service;
 use Phy\CoreApi\DefaultService;
 use Phy\CoreApi\CoreService;
 use Phy\CoreApi\CoreException;
-use Phy\CoreApi\Models\ApiToken;
+use App\Model\ApiToken;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
 use Exception;
