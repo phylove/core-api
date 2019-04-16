@@ -42,7 +42,7 @@ abstract class CoreService implements DefaultService {
 				throw new CoreException("", $validator->errors());
 			}
 
-			$this->prepare($input);
+			$input = $this->prepare($input);
 			$result =  $this->process($input, $originalInput);
 
 		} catch(CoreException $ex){		
