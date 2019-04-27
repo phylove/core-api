@@ -32,6 +32,13 @@ class DoLogout extends CoreService implements DefaultService {
             "user_id" => $session->user_id
         ])->delete();
 
+        $api = new ApiToken;
+        $api->user_id = $session->user_id;
+        $api->key = $session->key;
+        $api->created_at = DATE_TIME_ACCESS;
+        $api->updated_at = DATE_TIME_ACCESS;
+        $api->save();
+
         return [];
 
     }
