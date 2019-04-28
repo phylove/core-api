@@ -1,7 +1,7 @@
 <?php
 
 namespace Phy\CoreApi\Providers;
-
+
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider

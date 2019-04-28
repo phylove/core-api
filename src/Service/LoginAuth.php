@@ -13,7 +13,7 @@ use DB;
 
 class LoginAuth extends CoreService implements DefaultService {
 
-    public $transaction = true;
+    public $transaction = false;
 
     public function getDescription()
     {
