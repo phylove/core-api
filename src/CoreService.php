@@ -29,7 +29,7 @@ abstract class CoreService implements DefaultService {
 		$originalInput = $input;
 		$result = [];
 		if(isset($this->task)){
-			if(!in_array($this->task, isset($inout["session"]->tasks)? $inout["session"]->task : []))
+			if(!in_array($this->task, $input["session"]->tasks))
 				throw New CoreException("Unauthorized");
 		}
 
