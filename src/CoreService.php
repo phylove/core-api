@@ -28,9 +28,8 @@ abstract class CoreService implements DefaultService {
 	public function execute($input){
 		$originalInput = $input;
 		$result = [];
-
 		if(isset($this->task)){
-			if(!in_array($this->task, app()->make('sessions')->getSessionAll()->tasks))
+			if(!in_array($this->task, isset($inout["session"]->tasks)? $inout["session"]->task : []))
 				throw New CoreException("Unauthorized");
 		}
 
