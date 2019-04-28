@@ -29,6 +29,14 @@ class CallService {
             }
 
             $sessions = app()->make('sessions')->getSessionAll();
+
+            // by session
+            if(is_null($sessions)) {
+                $sessions = new \stdClass;
+                $sessions->user_id = 0;
+                $sessions->tasks = [];
+            }
+
             $input['session'] = $sessions;
             $input['datetime'] = DATE_TIME_ACCESS;
             
