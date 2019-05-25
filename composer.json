@@ -13,7 +13,7 @@
     "require": {
         "php": ">=7.0.0",
         "firebase/php-jwt": "^5.0",
-        "rakit/validation"
+        "rakit/validation": "^1.1"
     },
     "autoload": {
         "psr-4": {
