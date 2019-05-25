@@ -13,7 +13,7 @@ use DB;
 
 class LoginAuth extends CoreService implements DefaultService {
 
-    public $transaction = true;
+    public $transaction = false;
 
     public function getDescription()
     {
@@ -38,15 +38,7 @@ class LoginAuth extends CoreService implements DefaultService {
 
         $key = sha1($user->id.microtime().rand(1000,999));
 
-        $api = new ApiToken;
-        $api->user_id = $user->id;
-        $api->key = $key;
-        $api->created_at = DATE_TIME_ACCESS;
-        $api->updated_at = DATE_TIME_ACCESS;
-        $api->save();
-
-        $user->key = $key;
-
+        $user->key = sha1($user->id.microtime().rand(1000,999));
         $role = Role::find($user->role_id);
 
         $dbConnection = env('DB_CONNECTION', 'mysql');

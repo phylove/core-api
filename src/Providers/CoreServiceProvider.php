@@ -40,5 +40,9 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->singleton('doLogout', function(){
             return new \Phy\CoreApi\Service\DoLogout;
         });
+
+        $this->app->singleton('validation', function(){
+            return new \Rakit\Validation\Validator;
+        });
     }
 }

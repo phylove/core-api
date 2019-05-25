@@ -5,9 +5,7 @@ namespace Phy\CoreApi;
 use Phy\CoreApi\CoreException;
 use Exception;
 use DB;
-use Validator;
 use Log;
-
 
 abstract class CoreService implements DefaultService {
 
@@ -28,22 +26,25 @@ abstract class CoreService implements DefaultService {
 	public function execute($input){
 		$originalInput = $input;
 		$result = [];
-
 		if(isset($this->task)){
-			if(!in_array($this->task, app()->make('sessions')->getSessionAll()->tasks))
+			if(!in_array($this->task, $input["session"]->tasks))
 				throw New CoreException("Unauthorized");
 		}
 
 		try {
 			
-			$validator = Validator::make($input, $this->validation());
+			$validator = app()->make('validation');
 
-			if ($validator->fails()) {
-				throw new CoreException("", $validator->errors());
+			$validation = $validator->make($input, $this->validation());
+
+			$validation->validate();
+
+			if ($validation->fails()) {
+				throw new CoreException("", $validation->errors()->all());
 			}
 
-			$input = $this->prepare($input);
-			$result =  $this->process($input, $originalInput);
+			$inputNew = $this->prepare($input);
+			$result =  $this->process(is_array($inputNew)? $inputNew : $input, $originalInput);
 
 		} catch(CoreException $ex){		
 

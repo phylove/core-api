@@ -42,7 +42,7 @@ class CheckValidToken extends CoreService implements DefaultService {
             "user_id" => $payload->user_id
         ])->first();
 
-        if(is_null($checkApiValid)) {
+        if(!is_null($checkApiValid)) {
             throw New CoreException("Token is expired");
         }
 
