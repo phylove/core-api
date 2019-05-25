@@ -40,7 +40,7 @@ abstract class CoreService implements DefaultService {
 			$validation->validate();
 
 			if ($validation->fails()) {
-				throw new CoreException("", $validation->errors()->all());
+				throw new CoreException("", $validation->errors()->firstOfAll());
 			}
 
 			$inputNew = $this->prepare($input);
