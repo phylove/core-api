@@ -12,7 +12,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.0.0",
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^5.0",
+        "rakit/validation"
     },
     "autoload": {
         "psr-4": {
