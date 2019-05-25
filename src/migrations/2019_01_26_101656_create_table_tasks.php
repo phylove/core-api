@@ -27,7 +27,7 @@ class CreateTableTasks extends Migration
 
         // insert human task task
         DB::table('tasks')->insert([
-            'task_name' => 'viewUser',
+            'task_name' => 'view-user',
             'task_description' => 'View User',
             'task_group' => 'manageUser',            
             'version' => 0,
@@ -39,7 +39,7 @@ class CreateTableTasks extends Migration
 
         // insert human task task
         DB::table('tasks')->insert([
-            'task_name' => 'addUser',
+            'task_name' => 'add-user',
             'task_description' => 'Add User',
             'task_group' => 'manageUser', 
             'version' => 0,
@@ -51,7 +51,7 @@ class CreateTableTasks extends Migration
 
         // insert human task task
         DB::table('tasks')->insert([
-            'task_name' => 'editUser',
+            'task_name' => 'edit-user',
             'task_description' => 'Edit User',
             'task_group' => 'manageUser', 
             'version' => 0,
@@ -63,7 +63,7 @@ class CreateTableTasks extends Migration
 
         // insert human task task
         DB::table('tasks')->insert([
-            'task_name' => 'removeUser',
+            'task_name' => 'remove-user',
             'task_description' => 'Remove User',
             'task_group' => 'manageUser', 
             'version' => 0,
@@ -75,7 +75,7 @@ class CreateTableTasks extends Migration
 
         // insert human task task
         DB::table('tasks')->insert([
-            'task_name' => 'restoreUser',
+            'task_name' => 'restore-user',
             'task_description' => 'Restore User',
             'task_group' => 'manageUser', 
             'version' => 0,
