@@ -29,7 +29,7 @@ class CreateTableTasks extends Migration
         DB::table('tasks')->insert([
             'task_name' => 'view-user',
             'task_description' => 'View User',
-            'task_group' => 'manageUser',            
+            'task_group' => 'manage-user',            
             'version' => 0,
             'created_by' => -1,
             'updated_by' => -1,
@@ -41,7 +41,7 @@ class CreateTableTasks extends Migration
         DB::table('tasks')->insert([
             'task_name' => 'add-user',
             'task_description' => 'Add User',
-            'task_group' => 'manageUser', 
+            'task_group' => 'manage-user', 
             'version' => 0,
             'created_by' => -1,
             'updated_by' => -1,
@@ -53,7 +53,7 @@ class CreateTableTasks extends Migration
         DB::table('tasks')->insert([
             'task_name' => 'edit-user',
             'task_description' => 'Edit User',
-            'task_group' => 'manageUser', 
+            'task_group' => 'manage-user', 
             'version' => 0,
             'created_by' => -1,
             'updated_by' => -1,
@@ -65,7 +65,7 @@ class CreateTableTasks extends Migration
         DB::table('tasks')->insert([
             'task_name' => 'remove-user',
             'task_description' => 'Remove User',
-            'task_group' => 'manageUser', 
+            'task_group' => 'manage-user', 
             'version' => 0,
             'created_by' => -1,
             'updated_by' => -1,
@@ -77,7 +77,7 @@ class CreateTableTasks extends Migration
         DB::table('tasks')->insert([
             'task_name' => 'restore-user',
             'task_description' => 'Restore User',
-            'task_group' => 'manageUser', 
+            'task_group' => 'manage-user', 
             'version' => 0,
             'created_by' => -1,
             'updated_by' => -1,

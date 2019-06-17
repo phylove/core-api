@@ -30,7 +30,7 @@ class CreateTableRoleTask extends Migration
             "INSERT INTO role_task(role_id, task_id, version, created_by, updated_by, created_at, updated_at)
             SELECT B.id, A.id, 0, -1, -1, ".date("YmdHis").", ".date("YmdHis")." 
                 FROM tasks A, roles B 
-            WHERE A.task_group='manageUser' AND B.role_code='administrator'"
+            WHERE A.task_group='manage-user' AND B.role_code='super-admin'"
         );
         
     }
