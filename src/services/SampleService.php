@@ -17,7 +17,7 @@ class SampleService extends CoreService {
 
     public function process($input, $originalInput)
     {
-        return ["test" => "version 1.5.0"];
+        return ["test" => "version 1.6"];
     }
 
 }
