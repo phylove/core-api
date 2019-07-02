@@ -39,6 +39,11 @@ class CallService {
 
             $input['session'] = $sessions;
             $input['datetime'] = DATE_TIME_ACCESS;
+
+            if(isset($object->task)){
+                if(!in_array($object->task, $sessions->tasks))
+                    throw New CoreException("Unauthorized");
+            }
             
             $result = $object->execute($input);
 
