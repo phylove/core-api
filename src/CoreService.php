@@ -15,21 +15,17 @@ abstract class CoreService implements DefaultService {
 	abstract protected function process($input, $originalData);
 
 	public static function getInstance() {
-        $class = get_called_class();
+		$class = get_called_class();
 
-        if (!isset(self::$instances[$class])) {
-            self::$instances[$class] = new $class;
-        }
-        return self::$instances[$class];
-    }
+		if (!isset(self::$instances[$class])) {
+		    self::$instances[$class] = new $class;
+		}
+		return self::$instances[$class];
+	}
 
 	public function execute($input){
 		$originalInput = $input;
 		$result = [];
-		if(isset($this->task)){
-			if(!in_array($this->task, $input["session"]->tasks))
-				throw New CoreException("Unauthorized");
-		}
 
 		try {
 			
