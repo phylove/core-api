@@ -15,7 +15,7 @@ class CoreResponse {
             $result["message"] = $message;
         }
 
-        return $result;
+        return response()->json($result, 200);
 	}
 
 	public static function fail($ex){
@@ -26,7 +26,18 @@ class CoreResponse {
 
         $result["error_list"] = $ex->getErrorList();
 
-        return $result;
+        return response()->json($result, 200);
+        
+    }
+    
+    public static function error($ex){
+        $result["success"] = false;
+        if(!empty($ex->getErrorMessage()) && !is_null($ex->getErrorMessage()) ){
+            $result["error_message"] = $ex->getErrorMessage();
+        }
+
+        $result["error_code"] = $ex->getErrorCode();
+        return response()->json($result, $ex->getErrorCode());
         
 	}
 }

@@ -3,6 +3,7 @@
 namespace Phy\CoreApi;
 
 use Phy\CoreApi\CoreException;
+use Phy\CoreApi\ErrorException;
 use Exception;
 use DB;
 use Log;
@@ -15,13 +16,13 @@ abstract class CoreService implements DefaultService {
 	abstract protected function process($input, $originalData);
 
 	public static function getInstance() {
-		$class = get_called_class();
+        $class = get_called_class();
 
-		if (!isset(self::$instances[$class])) {
-		    self::$instances[$class] = new $class;
-		}
-		return self::$instances[$class];
-	}
+        if (!isset(self::$instances[$class])) {
+            self::$instances[$class] = new $class;
+        }
+        return self::$instances[$class];
+    }
 
 	public function execute($input){
 		$originalInput = $input;
@@ -47,9 +48,7 @@ abstract class CoreService implements DefaultService {
 			throw $ex;
 			
         } catch(Exception $ex){
-			
-			throw new CoreException($ex->getMessage());
-
+			throw new ErrorException($ex->getMessage(), 500);
 		}
         
 		return $result;

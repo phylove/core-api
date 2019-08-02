@@ -1,5 +1,24 @@
 <?php
 
+if ( ! function_exists('blank_value'))
+{
+
+    function blank_value($array, $key)
+    {
+        return isset($array[$key])? $array[$key] : "";
+    }
+}
+
+if ( ! function_exists('is_blank'))
+{
+
+    function is_blank($array, $key)
+    {
+        return isset($array[$key])? (empty($array[$key])? true : false) : true;
+    }
+}
+
+
 if(!function_exists('service')){
 
     /**

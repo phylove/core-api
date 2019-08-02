@@ -15,11 +15,6 @@ class LoginAuth extends CoreService implements DefaultService {
 
     public $transaction = false;
 
-    public function getDescription()
-    {
-        return "Do Login";
-    }
-
     public function prepare($input)
     {
         
@@ -60,8 +55,11 @@ class LoginAuth extends CoreService implements DefaultService {
         $session = [
             "user_id" => $user->id,
             "username" => $user->username,
+            "full_name" => $user->full_name,
+            "email" => $user->email,
             "key" => $key,
             "role_id" => $role->id,
+            "role_code" => $role->role_code,
             "role_name" => $role->role_name,
             "tasks" => explode(",", $tasks[0]->result)
         ];

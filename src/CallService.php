@@ -2,6 +2,8 @@
 
 namespace Phy\CoreApi;
 use Phy\CoreApi\CoreException;
+use Phy\CoreApi\ErrorException;
+use Exception;
 use DB;
 
 class CallService {
@@ -18,13 +20,13 @@ class CallService {
             
             // validation service exists
             if(!class_exists($classService)){
-                throw New CoreException("Service doesn't exists");
+                throw New ErrorException("Service doesn't exists", 403);
             }
 
             // validation service not allow
             if(isset($object->system)){
                 if($object->system === true){
-                    throw New CoreException("Service doesn't allow access");
+                    throw New ErrorException("Service doesn't allow access", 403);
                 }
             }
 
@@ -42,7 +44,7 @@ class CallService {
 
             if(isset($object->task)){
                 if(!in_array($object->task, $sessions->tasks))
-                    throw New CoreException("Unauthorized");
+                    throw New ErrorException("Unauthorized", 401);
             }
             
             $result = $object->execute($input);
@@ -52,12 +54,14 @@ class CallService {
 
             return CoreResponse::ok($result);
 
-        } catch (CoreException $ex){
+        } catch (CoreException $ex) {
             // transaction rollback
             if($object->transaction !== null && $object->transaction !== false)
                 DB::rollback();
             
             return CoreResponse::fail($ex);
+        } catch(ErrorException $ex) {
+            return CoreResponse::error($ex);
         }
         
         
